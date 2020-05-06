@@ -319,4 +319,15 @@ im1 = im.crop((left, top, right, bottom))
 plt.imshow(im1)
 plt.show
 
-Print('Hello')
+left = 5
+top = height / 4
+right = 164
+bottom = 3 * height / 4
+  
+# Cropped image of above dimension 
+# (It will not change orginal image) 
+im1 = im.crop((left, top, right, bottom)) 
+  
+plt.imshow(im1)
+plt.show
+
