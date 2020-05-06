@@ -318,3 +318,5 @@ im1 = im.crop((left, top, right, bottom))
   
 plt.imshow(im1)
 plt.show
+
+Print('Hello')
