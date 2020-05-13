@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 import torch
 from torchvision import transforms
-
+from google.colab.patches import cv2_imshow 
 import networks
 from utils import download_model_if_doesnt_exist
 import re 
@@ -106,7 +106,7 @@ for f1 in dirFiles:
 
     skimage.io.imsave('/content/another window/image' + str(pic_num) + '.png',disp_resized_np)#cv2.cvtColor(np.float32(disp_resized_np), cv2.COLOR_RGB2BGR))#COLOR_GRAY2BGR))
 
-    from google.colab.patches import cv2_imshow   
+  
     imageTest=cv2.imread('/content/another window/image' + str(pic_num) + '.png')
     imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1.8), cv2.COLORMAP_MAGMA)
     #imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1), cv2.COLORMAP_JET)
@@ -118,5 +118,13 @@ for f1 in dirFiles:
     plt.imshow(imageTest)
     plt.show
 
+  
+    input_image=cv2.cvtColor(np.float32(input_image),cv2.COLOR_RGB2BGR)
+    concat = np.hstack((input_image, imageTest))
+    cv2.imwrite('/content/concatenated/image' + str(pic_num) + '.png',concat)#cv2.cvtColor(np.float32(concat),cv2.COLOR_RGB2BGR))
+
+    #cv2_imshow(concat)
+    from google.colab import files
+    files.download('/content/concatenated/image' + str(pic_num) + '.png')
     pic_num = pic_num + 1
 
