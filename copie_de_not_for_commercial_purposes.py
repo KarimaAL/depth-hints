@@ -109,6 +109,11 @@ for f1 in dirFiles:
     from google.colab.patches import cv2_imshow   
     imageTest=cv2.imread('/content/another window/image' + str(pic_num) + '.png')
     imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1.8), cv2.COLORMAP_MAGMA)
+    #imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1), cv2.COLORMAP_JET)
+    # imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1), cv2.COLORMAP_HSV)
+    #imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1.8), cv2.COLORMAP_PLASMA)
+    #imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=0.9), cv2.COLORMAP_RAINBOW)
+    #imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1.8), cv2.COLORMAP_TURBO)
     
     plt.imshow(imageTest)
     plt.show
