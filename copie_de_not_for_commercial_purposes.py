@@ -78,5 +78,31 @@ for f1 in dirFiles:
 
     input_image_pytorch = transforms.ToTensor()(input_image_resized).unsqueeze(0)
 
+        data.append(img)
+    with torch.no_grad():
+      features = encoder(input_image_pytorch)
+      outputs = depth_decoder(features)
+
+    disp = outputs[("disp", 0)]
+
+    disp_resized = torch.nn.functional.interpolate(disp,
+    (original_height, original_width), mode="bilinear", align_corners=False)
+
+    # Saving colormapped depth image
+    disp_resized_np = disp_resized.squeeze().cpu().numpy()
+    vmax = np.percentile(disp_resized_np, 95)
+    
+    plt.figure(figsize=(10, 10))
+    plt.subplot(211)
+    plt.imshow(input_image)
+    plt.title("Input", fontsize=22)
+    plt.axis('off')
+
+    plt.subplot(212)
+    plt.imshow(disp_resized_np, cmap='magma', vmax=vmax)
+    plt.title("Disparity prediction", fontsize=22)
+    plt.axis('off');
+
+
     pic_num = pic_num + 1
 
