@@ -67,7 +67,11 @@ pic_num = 1
 for f1 in dirFiles:
     img = cv2.imread(f1)
         
-    input_image = Image.open(f1).convert('RGB')
+    # input_image = Image.open(f1).convert('RGB')
+    # original_width, original_height = input_image.size
+    input_image1 = Image.open(f1).convert('RGB')
+    original_width, original_height = input_image1.size
+    input_image     = input_image1.crop((1,152,1280,800)) ## left, up, right, bottom
     original_width, original_height = input_image.size
     feed_height = loaded_dict_enc['height']
     feed_width = loaded_dict_enc['width']
