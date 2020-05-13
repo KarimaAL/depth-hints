@@ -66,5 +66,17 @@ data = []
 pic_num = 1
 for f1 in dirFiles:
     img = cv2.imread(f1)
+        
+    input_image = Image.open(f1).convert('RGB')
+    original_width, original_height = input_image.size
+    feed_height = loaded_dict_enc['height']
+    feed_width = loaded_dict_enc['width']
+
+    print(input_image.size)
+
+    input_image_resized = input_image.resize((feed_width, feed_height), pil.LANCZOS)
+
+    input_image_pytorch = transforms.ToTensor()(input_image_resized).unsqueeze(0)
+
     pic_num = pic_num + 1
 
