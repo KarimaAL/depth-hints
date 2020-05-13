@@ -13,7 +13,7 @@ Original file is located at
 # Commented out IPython magic to ensure Python compatibility.
 from __future__ import absolute_import, division, print_function
 # %matplotlib inline
-
+import skimage.io
 import os
 import numpy as np
 import PIL.Image as pil
@@ -103,6 +103,15 @@ for f1 in dirFiles:
     plt.title("Disparity prediction", fontsize=22)
     plt.axis('off');
 
+
+    skimage.io.imsave('/content/another window/image' + str(pic_num) + '.png',disp_resized_np)#cv2.cvtColor(np.float32(disp_resized_np), cv2.COLOR_RGB2BGR))#COLOR_GRAY2BGR))
+
+    from google.colab.patches import cv2_imshow   
+    imageTest=cv2.imread('/content/another window/image' + str(pic_num) + '.png')
+    imageTest = cv2.applyColorMap(cv2.convertScaleAbs(imageTest, alpha=1.8), cv2.COLORMAP_MAGMA)
+    
+    plt.imshow(imageTest)
+    plt.show
 
     pic_num = pic_num + 1
 
