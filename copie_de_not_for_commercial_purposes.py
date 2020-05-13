@@ -29,6 +29,11 @@ import cv2
 import glob
 from PIL import Image
 
+import re 
+import cv2
+import glob
+from PIL import Image
+
 model_name = "mono_640x192"
 
 download_model_if_doesnt_exist(model_name)
@@ -49,4 +54,17 @@ depth_decoder.load_state_dict(loaded_dict)
 encoder.eval()
 depth_decoder.eval();
 
+img_dir = "/content/drive/My Drive/VIDEO PEDESTRIAN" # Enter Directory of all images 
+
+data_path = os.path.join(img_dir,'*g')
+files = glob.glob(data_path)
+
+dirFiles = files
+dirFiles.sort( key=lambda f: int(re.sub('\D', '', f)),)
+print(dirFiles)
+data = []
+pic_num = 1
+for f1 in dirFiles:
+    img = cv2.imread(f1)
+    pic_num = pic_num + 1
 
